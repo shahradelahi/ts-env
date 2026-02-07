@@ -46,20 +46,20 @@
   },
   "prettier": "@shahrad/prettier-config",
   "dependencies": {
-    "dotenv": "^17.2.1"
+    "dotenv": "^17.2.4"
   },
   "devDependencies": {
-    "@shahrad/eslint-config": "^1.0.0",
+    "@shahrad/eslint-config": "^1.0.1",
     "@shahrad/prettier-config": "^1.2.2",
     "@shahrad/tsconfig": "^1.2.0",
     "@types/crypto-js": "^4.2.2",
-    "@types/node": "^24.3.0",
-    "eslint": "^9.34.0",
-    "globals": "^16.3.0",
-    "prettier": "^3.6.2",
-    "tsup": "^8.5.0",
-    "typescript": "^5.9.2",
-    "vitest": "^3.2.4"
+    "@types/node": "^25.2.1",
+    "eslint": "^10.0.0",
+    "globals": "^17.3.0",
+    "prettier": "^3.8.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   },
   "peerDependencies": {
     "arktype": "^2.1.0",
@@ -81,5 +81,5 @@
       "optional": true
     }
   },
-  "packageManager": "pnpm@10.15.0"
+  "packageManager": "pnpm@10.28.2+sha512.41872f037ad22f7348e3b1debbaf7e867cfd448f2726d9cf74c08f19507c31d2c8e7a11525b983febc2df640b5438dee6023ebb1f84ed43cc2d654d2bc326264"
 }
