@@ -1,6 +1,6 @@
 {
   "name": "@se-oss/env",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A universal, type-safe environment variable loader for Node.js, Edge, and Browser environments.",
   "keywords": [
     "environment-variables",
