@@ -30,6 +30,8 @@ export function createEnv<
     const dotenvOptions = typeof options.dotenv === 'object' ? options.dotenv : {};
     const dot = config({
       ...dotenvOptions,
+      quiet: true,
+      override: true,
       processEnv: {}, // Don't pollute global process.env
     });
 
