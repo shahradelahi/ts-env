@@ -127,6 +127,21 @@ describe('createEnv', () => {
     expect(env.PORT).toBe('not-a-number');
   });
 
+  test('should skip validation when process.env.SKIP_ENV_VALIDATION is set', () => {
+    process.env['SKIP_ENV_VALIDATION'] = 'true';
+    const runtimeEnv = {
+      PORT: 'not-a-number',
+    };
+
+    const env = createEnv({
+      schema: { PORT: z.number() },
+      runtimeEnv,
+    });
+
+    expect(env.PORT).toBe('not-a-number');
+    delete process.env['SKIP_ENV_VALIDATION'];
+  });
+
   test('should return a readonly (frozen) object', () => {
     const runtimeEnv = {
       API_KEY: 'test-api-key',

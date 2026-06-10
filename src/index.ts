@@ -18,13 +18,18 @@ export function createEnv<
   TSchema extends TSchemaFormat = NonNullable<unknown>,
   const TExtends extends TExtendsFormat = [],
 >(options: CreateEnvOptions<TSchema, TExtends>): EnvResult<TSchema, TExtends> {
-  if (options.skipValidation) {
+  const isNode = typeof process !== 'undefined' && process.versions?.node;
+  const skip =
+    options.skipValidation ||
+    (isNode &&
+      !!process.env['SKIP_ENV_VALIDATION'] &&
+      process.env['SKIP_ENV_VALIDATION'] !== 'false');
+
+  if (skip) {
     return options.runtimeEnv as any;
   }
 
   let envSource = { ...options.runtimeEnv };
-
-  const isNode = typeof process !== 'undefined' && process.versions?.node;
 
   if (options.dotenv && isNode) {
     const dotenvOptions = typeof options.dotenv === 'object' ? options.dotenv : {};
@@ -59,7 +64,10 @@ export function createEnv<
     if (options.onValidationError) {
       return options.onValidationError(result.issues);
     }
-    throw new InvalidEnvironmentError('Invalid environment variables detected.', {
+    const errorsList = result.issues
+      .map((issue) => `  - ${issue.path?.join('.') || 'unknown'}: ${issue.message}`)
+      .join('\n');
+    throw new InvalidEnvironmentError(`Invalid environment variables detected:\n${errorsList}`, {
       cause: result.issues,
     });
   }
